@@ -7,6 +7,7 @@ import UserRouter from './routers/UserRouter';
 import RestaurantRouter from './routers/RestaurantRouter';
 import CityRouter from './routers/CityRouter';
 import City from './models/City';
+import BannerRouter from './routers/BannerRouter';
 
 export class Server {
 
@@ -49,7 +50,7 @@ export class Server {
         this.app.use('/src/uploads', express.static('src/uploads'));
         this.app.use('/api/user', UserRouter);
         this.app.use('/api/restaurant', RestaurantRouter);
-        this.app.use('/api/banner', UserRouter);
+        this.app.use('/api/banner', BannerRouter);
         this.app.use('/api/city', CityRouter);
     }
 

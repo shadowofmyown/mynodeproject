@@ -10,16 +10,16 @@ export class BannerController {
             }
             const banner = await new Banner(data).save();
             res.send(banner);
-        } catch(e) {
+        } catch (e) {
             next(e);
         }
     }
 
     static async getBanners(req, res, next) {
         try {
-            const banners = await Banner.find({status: true}); 
+            const banners = await Banner.find({ status: true });
             res.send(banners);
-        } catch(e) {
+        } catch (e) {
             next(e);
         }
     }

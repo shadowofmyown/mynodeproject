@@ -22,15 +22,15 @@ class BannerRouter {
     }
 
     postRoutes() {
-        this.router.post('/create', GlobalMiddleWare.auth, GlobalMiddleWare.adminRole, new Utils().multer.single('bannerImages'), BannerValidators.addBanner(), GlobalMiddleWare.checkError, BannerController.addBanner);
+        this.router.post('/banner/create', GlobalMiddleWare.auth, GlobalMiddleWare.adminRole, new Utils().multer.single('bannerImages'), BannerValidators.addBanner(), GlobalMiddleWare.checkError, BannerController.addBanner);
     }
 
     patchRoutes() {
     }
 
-    putRoutes() {}
+    putRoutes() { }
 
-    deleteRoutes() {}
+    deleteRoutes() { }
 
 }
 
