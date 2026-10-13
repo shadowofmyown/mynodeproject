@@ -5,6 +5,7 @@ const restaurantSchema = new mongoose.Schema({
     user_id: { type: mongoose.Types.ObjectId, ref: 'users', required: true },
     city_id: { type: mongoose.Types.ObjectId, ref: 'cities', required: true },
     name: { type: String, required: true },
+    email: { type: String, required: true },
     // short_name: { type: String, required: true },
     description: { type: String },
     cover: { type: String, required: true },
@@ -19,8 +20,8 @@ const restaurantSchema = new mongoose.Schema({
     status: { type: String, required: true },
     rating: { type: Number, required: true, default: 0 },
     totalRating: { type: Number, required: true, default: 0 },
-    created_at: { type: Date, required: true, default: new Date()},
-    updated_at: { type: Date, required: true, default: new Date()},
+    created_at: { type: Date, required: true, default: new Date() },
+    updated_at: { type: Date, required: true, default: new Date() },
 });
 
 // restaurantSchema.index({ location: "2dsphere" }, {background: true})

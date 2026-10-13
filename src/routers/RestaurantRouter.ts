@@ -24,7 +24,7 @@ class RestaurantRouter {
     }
 
     postRoutes() {
-        this.router.post('/create', GlobalMiddleWare.auth, GlobalMiddleWare.adminRole, RestaurantValidators.addRestaurant(), GlobalMiddleWare.checkError, RestaurantController.addRestaurant);
+        this.router.post('/create', GlobalMiddleWare.auth, GlobalMiddleWare.adminRole, new Utils().multer.single('restaurantImages'), RestaurantValidators.addRestaurant(), GlobalMiddleWare.checkError, RestaurantController.addRestaurant);
     }
 
     patchRoutes() {

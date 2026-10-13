@@ -26,6 +26,7 @@ export class RestaurantController {
             const user = await new User(data).save();
             // create restaurant
             let restaurant_data: any = {
+                email: restaurant.email,
                 name: restaurant.res_name,
                 // short_name: restaurant.short_name,
                 location: JSON.parse(restaurant.location),
@@ -69,30 +70,34 @@ export class RestaurantController {
         const EARTH_RADIUS_IN_KM = 6378.1;
         const data = req.query;
         try {
-            const restaurants = await Restaurant.find(
-                {
-                    status: 'active',
-                    location: {
-                        // $nearSphere: { 
-                        //     $geometry: 
-                        //     { 
-                        //         type: "Point", 
-                        //         coordinates: [ parseFloat(data.lng), parseFloat(data.lat) ]
-                        //     }, 
-                        //     $maxDistance: parseFloat(data.radius) * METERS_PER_KM 
-                        // }
-                        $geoWithin: {
-                            $centerSphere: [
-                                [parseFloat(data.lng), parseFloat(data.lat)],
-                                parseFloat(data.radius) / EARTH_RADIUS_IN_KM
-                            ]
-                        }
+            console.log("1. Before query");
+
+            const restaurants = await Restaurant.find({
+                status: 'active',
+                location: {
+                    $geoWithin: {
+                        $centerSphere: [
+                            [
+                                parseFloat(data.lng),
+                                parseFloat(data.lat)
+                            ],
+                            parseFloat(data.radius) / EARTH_RADIUS_IN_KM
+                        ]
                     }
                 }
-            );
+            });
+
+            console.log("2. Query successful");
+            // console.log("restaurants:", restaurants);
+
             res.send(restaurants);
+
+            console.log("3. Response sent");
+
         } catch (e) {
-            next(e);
+            console.log("4. CATCH");
+            console.log("ERROR:", e);
+            // console.log("MESSAGE:", e.message);
         }
     }
 

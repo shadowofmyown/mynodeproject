@@ -6,6 +6,7 @@ export class BannerValidators {
         return [
             body('bannerImages', 'Banner image is required')
                 .custom((banner, { req }) => {
+                    console.log('Filenishant:', req.file);
                     if (req.file) {
                         return true;
                     } else {

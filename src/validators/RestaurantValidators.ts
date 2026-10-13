@@ -7,8 +7,10 @@ export class RestaurantValidators {
         // console.log('addres')
         return [
             body('name', 'Owner Name is required').isString(),
-            body('email', 'Email is required').isEmail()
+            // body('email', 'Email is required').isEmail()
+            body("email",)
                 .custom((email, { req }) => {
+                    console.log('email', email)
                     return User.findOne({
                         email: email,
                         // type: 'user'
@@ -30,6 +32,7 @@ export class RestaurantValidators {
 
             body('restaurantImages', 'Cover image is required')
                 .custom((cover, { req }) => {
+                    console.log('Filenishant:', req.file);
                     if (req.file) {
                         return true;
                     } else {
